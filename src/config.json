@@ -1,0 +1,7 @@
+{
+    "endpoint": "http://localhost:5000/sparql",
+    "limboGraph": "http://www.limbo-endpoint.org/",
+    "devGraph": "http://www.limbo-endpoint.org/dev/",
+    "daliccGraph": "https://www.dalicclicense.net/",
+    "path": "tmp/"
+}

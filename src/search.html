@@ -1,0 +1,166 @@
+<meta charset="UTF-8">
+<head>
+    <title>License Search</title>
+    <h2 style="margin-left: 40%">License Search</h2>
+    <img style="position: absolute; top: 5px; right: 20px; width: 500px" src="Logo/Limbo-Logo/limbo.png">
+</head>
+<body>
+<style type="text/css">
+ .License { cursor:hand; cursor:pointer;
+        border:1px solid #404040; width:70%;
+        padding: 3px;
+        box-shadow: inset 0 0 0 3px gray;
+        margin-bottom: 1px;
+        display: flex;
+        flex-direction: column }
+.subLicense { width: 100%;}
+</style>
+<script src="./config.js"></script>
+<script src="./search.js"></script>
+    <div id="licenseTerms" style="float: left; border-style: solid; width: 320px;">
+                <b>Reproduce</b><span style="margin-left: 10px; color: #405ba6" title="To make duplicate copies the Asset in any material form.">&#x1F6C8</span><br>
+        <input type="radio" name="reproduce" value=1>Permit
+        <input type="radio" name="reproduce" value=0 checked>Ignore
+        <input type="radio" name="reproduce" value=-1>Prohibit
+        <br><br>
+        <b>Distribute</b><span style="margin-left: 10px; color: #405ba6" title="To supply the Asset to third-parties.">&#x1F6C8</span><br>
+        <input type="radio" name="distribute" onclick="toggleSubDiv('distributeSub', false)" value=1>Permit
+        <input type="radio" name="distribute" onclick="toggleSubDiv('distributeSub', true)" value=0 checked>Ignore
+        <input type="radio" name="distribute" onclick="toggleSubDiv('distributeSub', true)" value=-1>Prohibit
+        <br>
+        <div style="margin-left: 1.5%; display: none" id="distributeSub">
+            <b>Display</b><span style="margin-left: 10px; color: #405ba6" title="To create a static and transient rendition of an Asset.">&#x1F6C8</span><br>
+            <input type="radio" name="display" value=1>Permit
+            <input type="radio" name="display" value=0 checked>Ignore
+            <input type="radio" name="display" value=-1>Prohibit
+            <br>
+            <b>Present</b><span style="margin-left: 10px; color: #405ba6" title="To publicly perform the Asset.">&#x1F6C8</span><br>
+            <input type="radio" name="present" value=1>Permit
+            <input type="radio" name="present" value=0 checked>Ignore
+            <input type="radio" name="present" value=-1>Prohibit
+            <br>
+            <div id="distributeDuties" style="border-style: solid">
+                <i><b>Duties</b></i><br>
+                <b>Attribution</b><span style="margin-left: 10px; color: #405ba6" title="Credit be given to copyright holder and/or author.">&#x1F6C8</span><br>
+                <input type="radio" name="distributeAttribution" value=1>Require Duty
+                <input type="radio" name="distributeAttribution" value=0 checked>Ignore
+                <br>
+                <b>Notice</b><span style="margin-left: 10px; color: #405ba6" title="Copyright and license notices be kept intact.">&#x1F6C8</span><br>
+                <input type="radio" name="distributeNotice" value=1>Require Duty
+                <input type="radio" name="distributeNotice" value=0 checked>Ignore
+                <br>
+            </div>
+        </div>
+        <br><br>
+        <b>Modify</b><span style="margin-left: 10px; color: #405ba6" title="To change existing content of the Asset. A new asset is not created by this action.">&#x1F6C8</span><br>
+        <input type="radio" name="modify" onclick="toggleSubDiv('modifySub', false)" value=1>Permit
+        <input type="radio" name="modify" onclick="toggleSubDiv('modifySub', true)" value=0 checked>Ignore
+        <input type="radio" name="modify" onclick="toggleSubDiv('modifySub', true)" value=-1>Prohibit
+        <br>
+        <div style="margin-left: 1.5%; display: none" id="modifySub">
+            <b>Modified Works</b><span style="margin-left: 10px; color: #405ba6" title="To allow distribution of the modified Asset">&#x1F6C8</span><br>
+            <input type="radio" name="modifiedWorks" value=1>Permit
+            <input type="radio" name="modifiedWorks" value=0 checked>Ignore
+            <input type="radio" name="modifiedWorks" value=-1>Prohibit
+            <br>
+            <div id="modifyDuties" style="border-style: solid">
+                <i><b>Duties</b></i><br>
+                <b>Rename</b><span style="margin-left: 10px; color: #405ba6" title="The Name of the modified Asset must be changed to distinguish it from the original Asset">&#x1F6C8</span><br>
+                <input type="radio" name="modifyRename" value=1>Require Duty
+                <input type="radio" name="modifyRename" value=0 checked>Ignore
+                <br>
+                <b>Attribution</b><span style="margin-left: 10px; color: #405ba6" title="Credit be given to copyright holder and/or author.">&#x1F6C8</span><br>
+                <input type="radio" name="modifyAttribution" value=1>Require Duty
+                <input type="radio" name="modifyAttribution" value=0 checked>Ignore
+                <br>
+                <b>Modification Notice</b><span style="margin-left: 10px; color: #405ba6" title="The changes to the original Asset must be documented and clearly document the difference between both of them.">&#x1F6C8</span><br>
+                <input type="radio" name="modifyModificationNotice" value=1>Require Duty
+                <input type="radio" name="modifyModificationNotice" value=0 checked>Ignore
+                <br>
+                <b>Notice</b><span style="margin-left: 10px; color: #405ba6" title="Copyright and license notices be kept intact.">&#x1F6C8</span><br>
+                <input type="radio" name="modifyNotice" value=1>Require Duty
+                <input type="radio" name="modifyNotice" value=0 checked>Ignore
+                <br>
+            </div>
+        </div>
+        <br><br>
+        <b>Derive</b><span style="margin-left: 10px; color: #405ba6" title="To create a new derivative Asset from this Asset and to edit or modify the derivative.">&#x1F6C8</span><br>
+        <input type="radio" name="derive" onclick="toggleSubDiv('deriveSub', false)" value=1>Permit
+        <input type="radio" name="derive" onclick="toggleSubDiv('deriveSub', true)" value=0 checked>Ignore
+        <input type="radio" name="derive" onclick="toggleSubDiv('deriveSub', true)" value=-1>Prohibit
+        <br>
+        <div style="margin-left: 1.5%; display: none" id="deriveSub">
+            <b>Derivative Works</b><span style="margin-left: 10px; color: #405ba6" title="Distribution of derivative works.">&#x1F6C8</span><br>
+            <input type="radio" name="derivativeWorks" value=1>Permit
+            <input type="radio" name="derivativeWorks" value=0 checked>Ignore
+            <input type="radio" name="derivativeWorks" value=-1>Prohibit
+            <br>
+            <div id="deriveDuties" style="border-style: solid">
+                <i><b>Duties</b></i><br>
+                <b>Rename</b><span style="margin-left: 10px; color: #405ba6" title="The Name of the modified Asset must be changed to distinguish it from the original Asset">&#x1F6C8</span><br>
+                <input type="radio" name="deriveRename" value=1>Require Duty
+                <input type="radio" name="deriveRename" value=0 checked>Ignore
+                <br>
+                <b>Attribution</b><span style="margin-left: 10px; color: #405ba6" title="Credit be given to copyright holder and/or author.">&#x1F6C8</span><br>
+                <input type="radio" name="deriveAttribution" value=1>Require Duty
+                <input type="radio" name="deriveAttribution" value=0 checked>Ignore
+                <br>
+                <b>Modification Notice</b><span style="margin-left: 10px; color: #405ba6" title="The changes to the original Asset must be documented and clearly document the difference between both of them.">&#x1F6C8</span><br>
+                <input type="radio" name="deriveModificationNotice" value=1>Require Duty
+                <input type="radio" name="deriveModificationNotice" value=0 checked>Ignore
+                <br>
+                <b>Notice</b><span style="margin-left: 10px; color: #405ba6" title="Copyright and license notices be kept intact.">&#x1F6C8</span><br>
+                <input type="radio" name="deriveNotice" value=1>Require Duty
+                <input type="radio" name="deriveNotice" value=0 checked>Ignore
+                <br>
+            </div>
+        </div>
+        <br><br>
+        <b>Commercial Use</b><span style="margin-left: 10px; color: #405ba6" title="Exercising rights for commercial purposes.">&#x1F6C8</span><br>
+        <input type="radio" name="commercialUse" onclick="toggleSubDiv('commercialUseSub', false)" value=1>Permit
+        <input type="radio" name="commercialUse" onclick="toggleSubDiv('commercialUseSub', true)" value=0 checked>Ignore
+        <input type="radio" name="commercialUse" onclick="toggleSubDiv('commercialUseSub', true)" value=-1>Prohibit
+        <br>
+        <div style="margin-left: 1.5%; display: none" id="commercialUseSub">
+            <b>Promote</b><span style="margin-left: 10px; color: #405ba6" title="To allow the licensee to use the licensors trademark for advertisement.">&#x1F6C8</span><br>
+            <input type="radio" name="promote" value=1>Permit
+            <input type="radio" name="promote" value=0 checked>Ignore
+            <input type="radio" name="promote" value=-1>Prohibit
+            <br>
+        </div>
+        <br><br>
+        <b>Charge Distribution Fee</b><span style="margin-left: 10px; color: #405ba6" title="The licensee is allowed to charge a distribution fee.">&#x1F6C8</span><br>
+        <input type="radio" name="chargeDistributionFee" value=1>Permit
+        <input type="radio" name="chargeDistributionFee" value=0 checked>Ignore
+        <input type="radio" name="chargeDistributionFee" value=-1>Prohibit
+        <br><br>
+        <b>Change License</b><span style="margin-left: 10px; color: #405ba6" title="To allow the licensee to change, extend or modify the license. This excludes share alike as option">&#x1F6C8</span><br>
+        <input type="radio" name="changeLicense" onclick="toggleSubDiv('changeLicenseSub', false)" value=1>Permit
+        <input type="radio" name="changeLicense" onclick="toggleSubDiv('changeLicenseSub', true)" value=0 checked>Ignore
+        <input type="radio" name="changeLicense" onclick="toggleSubDiv('changeLicenseSub', true)" value=-1>Prohibit
+        <br>
+        <div style="margin-left: 1.5%; display: none" id="changeLicenseSub"> <!--Is share alike relevant for dataset licenses?, if so add as alternative for changeLicense-->
+            <div id="changeLicenseDuties" style="border-style: solid">
+                <i><b>Duties</b></i><br>
+                <b>Compliant License</b><span style="margin-left: 10px; color: #405ba6" title="The new license must comply with the original license">&#x1F6C8</span><br>
+                <input type="radio" name="compliantLicense" value=1>Require Duty
+                <input type="radio" name="compliantLicense" value=0 checked>Ignore
+                <br>
+            </div>
+        </div>
+        <br>
+    </div>
+    <div id="textInput">
+        <input type="text" id="searchString" style="width: 300px; margin-left: 15%; margin-top: 2%;">
+        <input type="button" onclick="searchLicenses()" value="Search">
+    </div>
+    <div id="licenseListLimbo" style="margin-left: 20%; margin-top: 3%;" data-type="limbo">
+        <h4 style="display: none">LIMBO Licenses</h4>
+    </div>
+    <div id="licenseListDALICC" style="margin-left: 20%; margin-top: 1%;" data-type="dalicc">
+        <h4 style="display: none">DALICC Licenses</h4>
+    </div>
+    <script type="text/javascript">
+        resetOnReload()
+    </script>
+</body>

@@ -1,0 +1,4 @@
+# python stuff
+src/__pycache__/*
+.python-version
+src/tmp/*
